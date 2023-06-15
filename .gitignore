@@ -1,5 +1,3 @@
 # Ignorar carpetas con contenido referente a estudiantes
  
- database/database.xlsx
- 
- database/~$database.xlsx
+database/*
