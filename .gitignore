@@ -1,3 +1,9 @@
 # Ignorar carpetas con contenido referente a estudiantes
  
 database/*
+
+# Ignorar también lo referente al pycache
+
+__pycache__
+
+.vscode

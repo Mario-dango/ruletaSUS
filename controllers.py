@@ -1,24 +1,25 @@
-from views import MainView
+from PyQt5.QtCore import QObject
+from views import MainView, DifficultyView
 
-class MainController:
+class MainController(QObject):
     def __init__(self):
-        self.view = MainView()
-        self.view.button_1a.clicked.connect(self.select_1a)
-        self.view.button_1b.clicked.connect(self.select_1b)
-        self.view.button_sus.clicked.connect(self.select_sus)
-        self.view.button_exit.clicked.connect(self.exit_program)
+        super().__init__()
 
-    def select_1a(self):
-        # Lógica para seleccionar 1A
-        pass
+        self.main_view = MainView()
+        self.difficulty_view = DifficultyView()
 
-    def select_1b(self):
-        # Lógica para seleccionar 1B
-        pass
+        self.main_view.button_1A.clicked.connect(self.show_difficulty_window)
+        self.difficulty_view.button_exit.clicked.connect(self.show_main_window)
+        self.main_view.button_exit.clicked.connect(self.close_main_window)
 
-    def select_sus(self):
-        # Lógica para seleccionar SUS
-        pass
+    def close_main_window(self):
+        self.difficulty_view.close()
+        self.main_view.close()
 
-    def exit_program(self):
-        self.view.close()
+    def show_main_window(self):
+        self.difficulty_view.close()
+        self.main_view.show()
+
+    def show_difficulty_window(self):
+        self.main_view.close()
+        self.difficulty_view.show()
